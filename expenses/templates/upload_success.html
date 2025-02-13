@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %} 
+<h1>File Uploaded Successfully!</h1>
+<p>Your file has been processed, and expenses have been added to the database.</p>
+<a href="{% url 'expense_list' %}">View Expenses</a>
+{% endblock %}

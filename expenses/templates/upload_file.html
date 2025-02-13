@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Upload Expense File</h1>
+
+
+{% if messages %}
+    {% for message in messages %}
+        <div style="color: {% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}orange{% else %}green{% endif %};">
+            {{ messages }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="sumbit">Upload</button>
+</form>
+{% endblock %}
+
