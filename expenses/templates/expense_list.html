@@ -1,37 +1,68 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script>
+    const csrfToken = '{{ csrf_token }}';
+  </script>
+  
 <h1>All Expenses</h1>
 <table>
     <thead>
         <tr>
-<<<<<<< HEAD
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Date</th>
-=======
             <th>ID</th>
             <th>Title</th>
             <th>Distribution Expense</th>
             <th>Published Date</th>
->>>>>>> d3d3efd (Fixed embedded repo issue and removed unnecessary Git tracking)
+            <th>Notes</th>
+            <th>Uploaded By</th>
         </tr>
     </thead>
     <tbody>
         {% for expense in expenses %}
         <tr>
-<<<<<<< HEAD
-            <td>{{ expense.name }}</td>
-            <td>{{ expense.amount }}</td>
-            <td>{{ expense.date }}</td>
-=======
             <td>{{ expense.id }}</td>
             <td>{{ expense.title }}</td>
             <td>{{ expense.distribution_expense }}</td>
-            <td>{{ expense.published_date }}</td>
->>>>>>> d3d3efd (Fixed embedded repo issue and removed unnecessary Git tracking)
+            <td>{{ expense.published_date|date:"M d, Y" }}</td>
+            <td contenteditable="true" onblur="updateNote(this, '{{ expense.id }}')">{{ expense.notes }}</td>
+            <td>{{ expense.uploaded_by|default:"N/A" }}</td>
         </tr>
         {% endfor %}
+
+        {% if expense_preview %}
+            <div class="preview">
+                <h3>Recently Uploaded Records:</h3>
+                <ul>
+                    {% for item in expense_preview %}
+                        <li><strong>{{ item.title }}</strong> — ${{ item.amount }} on {{ item.date }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+
     </tbody>
 </table>
+
+
+<script>
+    function updateNote(cell, expenseId) {
+        const newNote = cell.innerText;
+    
+        fetch("{% url 'update_note' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}"
+            },
+            body: `id=${expenseId}&note=${encodeURIComponent(newNote)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                alert("Failed to update note: " + data.error);
+            }
+        });
+    }
+    </script>    
 {% endblock %}

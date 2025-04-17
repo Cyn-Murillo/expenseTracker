@@ -4,7 +4,18 @@
     <h1>Add a New Expense</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="id_title">Title:</label>
+        {{ form.title }}<br>
+    
+        <label for="id_distribution_expense">Distribution Expense:</label>
+        {{ form.distribution_expense }}<br>
+    
+        <label for="id_published_date">Published Date:</label>
+        {{ form.published_date }}<br>
+    
+        <label for="id_notes">Notes:</label>
+        {{ form.notes }}<br>
+    
         <button type="submit">Add Expense</button>
-    </form>
+    </form>    
 {% endblock %}

@@ -3,13 +3,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-<<<<<<< HEAD
+    path('dashboard/', views.dashboard, name='dashboard'),
     path('add/', views.add_expense, name='add_expense'),
-    path('list/', views.expense_list, name='expense_list'),
-    path('upload/', views.upload_file, name='upload_file')
-=======
     path('upload/', views.upload_file, name='upload_file'),
-    path('list/', views.expense_list, name='expense_list'),
-    path('add/', views.add_expense, name='add_expense')
->>>>>>> d3d3efd (Fixed embedded repo issue and removed unnecessary Git tracking)
+    path('expenses/', views.expense_list, name='expense_list'),
+    path('update-note/', views.update_note, name='update_note'),
 ]

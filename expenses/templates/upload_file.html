@@ -3,12 +3,11 @@
 {% block content %}
 <h1>Upload Expense File</h1>
 
-<<<<<<< HEAD
 
 {% if messages %}
     {% for message in messages %}
-        <div style="color: {% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}orange{% else %}green{% endif %};">
-            {{ messages }}
+        <div class="alert {{ message.tags }}">
+            {{ message }}
         </div>
     {% endfor %}
 {% endif %}
@@ -21,29 +20,3 @@
 </form>
 {% endblock %}
 
-=======
-{% if messages %}
-    <ul>
-        {% for message in messages %}
-            <div style="color: {% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}orange{% else %}green{% endif %};">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </ul>
-{% endif %}
-
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="hidden" name="reupload" value="1">
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-</form>
-
-{% if messages %}
-    <br>
-    <a href="{% url 'expense_list' %}"><button>View Expenses</button></a>
-{% endif %}
-{% endblock %}
-
-
->>>>>>> d3d3efd (Fixed embedded repo issue and removed unnecessary Git tracking)

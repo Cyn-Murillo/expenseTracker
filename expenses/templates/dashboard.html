@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+       <nav style="margin-top: 20px;">
+        <ul style="list-style: none; display: flex; gap: 20px;">
+            <li><a href="{% url 'add_expense' %}">Add Expense</a></li>
+            <li><a href="{% url 'upload_file' %}">Upload File</a></li>
+            <li><a href="{% url 'expense_list' %}">View Expenses</a></li>
+            <li><a href="{% url 'admin:logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <h1>Welcome to Your Dashboard</h1>
+
+    <p>Hello, {{ request.user.username }}!</p>
+    <p>Use the navigation above to add, view, or upload expenses.</p>
+{% endblock %}

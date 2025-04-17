@@ -70,6 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'expense_tracker.wsgi.application'
 
+LOGIN_REDIRECT_URL = '/dashboard/'
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
